@@ -231,6 +231,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  header {
+    transition: none;
+  }
+
   .home-cinematic-image,
   .home-lesson-line {
     animation: none;

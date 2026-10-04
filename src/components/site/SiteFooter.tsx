@@ -10,7 +10,8 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-1">
-            <Logo className="h-9" />
+            <Logo variant="signature" className="h-9 md:hidden" />
+            <Logo className="hidden h-9 md:block" />
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">
               A managed learning and professional support platform connecting students and professionals with vetted subject experts.
             </p>

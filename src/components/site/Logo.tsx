@@ -10,8 +10,7 @@ import { SITE } from "@/config/site";
  *   /brand/monogram-blue.png     standalone mark, light backgrounds  (01)
  *   /brand/monogram-navy.png     standalone mark, deep-ink tone      (02)
  *   /brand/monogram-reverse.png  mark on a blue field / dark photo   (03)
- *   /brand/signature-white.png   compact monogram + "esk" signature  (04)
- *   /brand/signature-reverse.png signature on a blue field           (06)
+ *   /brand/wordmark-full.png      compact "Desk" signature
  *   /brand/wordmark-full-01.png  full "ScholarDesk" lockup           (07)
  *   /brand/academic-badge.png    verified-expertise badge            (08)
  *   /brand/og-image.png          social share card, light            (09)
@@ -21,8 +20,7 @@ export const BRAND = {
   monogram: "/brand/monogram-blue.png",
   monogramNavy: "/brand/monogram-navy.png",
   monogramReverse: "/brand/monogram-reverse.png",
-  signature: "/brand/signature-white.png",
-  signatureReverse: "/brand/signature-reverse.png",
+  signature: "/brand/wordmark-full.png",
   wordmark: "/brand/wordmark-full-01.png",
   badge: "/brand/academic-badge.png",
   ogImage: "/brand/og-image.png",
@@ -56,16 +54,14 @@ export function Logo({
         ? BRAND.monogramReverse
         : BRAND.monogram
       : variant === "signature"
-        ? tone === "inverse"
-          ? BRAND.signatureReverse
-          : BRAND.signature
+        ? BRAND.signature
         : BRAND.wordmark;
 
   return (
     <img
       src={src}
       alt={SITE.name}
-      className={`${HEIGHTS[variant]} w-auto shrink-0 object-contain ${className}`}
+      className={`${HEIGHTS[variant]} w-auto shrink-0 object-contain ${tone === "inverse" && variant === "signature" ? "brightness-0 invert" : ""} ${className}`}
       loading="eager"
       decoding="async"
     />

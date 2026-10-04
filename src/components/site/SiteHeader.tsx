@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/site/Logo";
@@ -25,26 +25,58 @@ const navigation = [
   { name: "Contact", href: "/contact" },
 ] as const;
 
-const linkClass = (active: boolean) =>
-  `text-sm font-medium transition-colors hover:text-primary ${
-    active ? "text-primary" : "text-muted-foreground"
+const linkClass = (active: boolean, inverse: boolean) =>
+  `text-sm font-medium transition-colors ${
+    inverse
+      ? active
+        ? "text-primary-foreground"
+        : "text-primary-foreground/75 hover:text-primary-foreground"
+      : active
+        ? "text-primary"
+        : "text-muted-foreground hover:text-primary"
   }`;
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [customersOpen, setCustomersOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const customersActive = customers.some((c) => c.href === pathname);
+  const hasDarkHero = pathname === "/";
+  const inverse = hasDarkHero && !scrolled;
+
+  useEffect(() => {
+    const updateScrolled = () => setScrolled(window.scrollY > 12);
+    updateScrolled();
+    window.addEventListener("scroll", updateScrolled, { passive: true });
+    return () => window.removeEventListener("scroll", updateScrolled);
+  }, []);
+
+  useEffect(() => {
+    setOpen(false);
+    setCustomersOpen(false);
+  }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur">
+    <header
+      className={`sticky top-0 z-50 transition-[background-color,border-color] duration-300 ${
+        inverse
+          ? "border-b border-primary-foreground/10 bg-primary-deep/65 text-primary-foreground"
+          : "border-b border-border bg-background text-foreground"
+      }`}
+    >
       <div className="mx-auto flex min-h-20 max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center" aria-label="ScholarDesk home">
-          <Logo className="h-7 sm:h-8" />
+          <Logo
+            variant="signature"
+            tone={inverse ? "inverse" : "default"}
+            className="h-7 sm:h-8 lg:hidden"
+          />
+          <Logo className={`hidden h-8 lg:block ${inverse ? "brightness-0 invert" : ""}`} />
         </Link>
 
         <nav className="hidden items-center gap-5 xl:gap-7 lg:flex" aria-label="Main">
-          <Link to="/" className={linkClass(pathname === "/")}>
+          <Link to="/" className={linkClass(pathname === "/", inverse)}>
             Home
           </Link>
 
@@ -58,7 +90,7 @@ export function SiteHeader() {
               onClick={() => setCustomersOpen((v) => !v)}
               aria-expanded={customersOpen}
               aria-haspopup="true"
-              className={`inline-flex items-center gap-1 ${linkClass(customersActive)}`}
+              className={`inline-flex items-center gap-1 ${linkClass(customersActive, inverse)}`}
             >
               Customers
               <ChevronDown
@@ -91,13 +123,17 @@ export function SiteHeader() {
           </div>
 
           {navigation.slice(1).map((item) => (
-            <Link key={item.href} to={item.href} className={linkClass(pathname === item.href)}>
+            <Link key={item.href} to={item.href} className={linkClass(pathname === item.href, inverse)}>
               {item.name}
             </Link>
           ))}
           <a
             href={PORTALS.ASSESSDESK}
-            className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/5 px-3 py-1.5 text-sm font-semibold text-primary transition-colors hover:bg-primary/10"
+            className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-semibold transition-colors ${
+              inverse
+                ? "border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/15"
+                : "border-primary/25 bg-primary/5 text-primary hover:bg-primary/10"
+            }`}
           >
             AssessDesk
             <span className="rounded-full bg-primary px-1.5 py-0.5 text-[10px] font-bold uppercase text-primary-foreground">New</span>
@@ -105,16 +141,25 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <Button variant="ghost" asChild>
+          <Button
+            variant="ghost"
+            className={inverse ? "text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground" : undefined}
+            asChild
+          >
             <a href={loginUrl()}>Log in</a>
           </Button>
-          <Button asChild>
+          <Button
+            className={inverse ? "bg-primary-foreground text-primary-deep hover:bg-primary-foreground/90" : undefined}
+            asChild
+          >
             <a href={registerUrl()}>Get started</a>
           </Button>
         </div>
 
         <button
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground lg:hidden"
+          className={`inline-flex h-10 w-10 items-center justify-center rounded-md lg:hidden ${
+            inverse ? "text-primary-foreground" : "text-foreground"
+          }`}
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}

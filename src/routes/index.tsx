@@ -195,7 +195,7 @@ function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="home-cinematic-hero relative isolate flex min-h-[680px] overflow-hidden bg-primary-deep text-primary-foreground lg:min-h-[720px]">
+      <section className="home-cinematic-hero relative isolate -mt-20 flex min-h-[680px] overflow-hidden bg-primary-deep text-primary-foreground lg:min-h-[720px]">
         <img
           src="/images/students-collaborating.jpg"
           alt="Students collaborating with laptops during a university lecture"
@@ -205,7 +205,7 @@ function Home() {
           className="home-cinematic-image absolute inset-0 -z-20 h-full w-full object-cover object-center"
         />
         <div className="home-cinematic-overlay absolute inset-0 -z-10" aria-hidden="true" />
-        <div className="relative mx-auto flex w-full max-w-7xl items-center px-4 py-12 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        <div className="relative mx-auto flex w-full max-w-7xl flex-col justify-center px-4 pb-12 pt-28 sm:px-6 sm:pb-20 sm:pt-32 lg:px-8 lg:pb-24 lg:pt-28">
           <div className="grid w-full items-center gap-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,.75fr)]">
             <div className="max-w-3xl space-y-7">
               {/*<p className="text-sm font-semibold uppercase tracking-widest text-primary-foreground/80">
@@ -228,24 +228,14 @@ function Home() {
                   <a href={registerUrl("writer")}>Join as an expert</a>
                 </Button>
               </div>
-              <ul className="flex flex-wrap gap-x-6 gap-y-2 pt-2 text-sm text-primary-foreground/80">
-                {["Students and professionals", "Vetted experts", "Revisions until satisfied"].map(
-                  (item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary-foreground" />
-                      {item}
-                    </li>
-                  ),
-                )}
-              </ul>
             </div>
 
             <div className="hidden justify-self-end lg:block" aria-hidden="true">
               <div className="home-lesson-panel w-[360px] border-l border-primary-foreground/35 pl-7">
-                <p className="text-xs font-semibold uppercase tracking-widest text-primary-foreground/65">Live learning focus</p>
-                <p className="mt-3 text-2xl font-semibold">Emerging AI &amp; learning</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-primary-foreground/65">Live ScholarDesk focus</p>
+                <p className="mt-3 text-2xl font-semibold">Matched, tracked & accountable</p>
                 <div className="mt-6 space-y-4 text-sm text-primary-foreground/80">
-                  {["Understand the model", "Question the output", "Verify the evidence"].map((label, index) => (
+                  {["Submit your task", "Get a vetted expert", "Review before payment"].map((label, index) => (
                     <div key={label} className="home-lesson-line flex items-center gap-3" style={{ animationDelay: `${index * 1.2}s` }}>
                       <span className="flex h-7 w-7 items-center justify-center rounded-full border border-primary-foreground/35 text-xs font-semibold">{index + 1}</span>
                       <span>{label}</span>
@@ -253,10 +243,21 @@ function Home() {
                   ))}
                 </div>
                 <div className="mt-7 h-px w-full bg-primary-foreground/25" />
-                <p className="mt-4 text-xs leading-relaxed text-primary-foreground/60">A practical framework for using new tools critically and responsibly.</p>
+                <p className="mt-4 text-xs leading-relaxed text-primary-foreground/60">One accountable record from brief to approved delivery.</p>
               </div>
             </div>
           </div>
+
+          <ul className="mx-auto mt-14 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 border-primary-foreground/15 pt-8 text-sm text-primary-foreground/80">
+            {["Students and professionals", "Vetted experts", "Revisions until satisfied"].map(
+              (item) => (
+                <li key={item} className="flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-primary-foreground" />
+                  {item}
+                </li>
+              ),
+            )}
+          </ul>
         </div>
       </section>
 
