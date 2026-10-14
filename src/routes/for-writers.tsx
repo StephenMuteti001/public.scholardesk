@@ -217,7 +217,7 @@ function ForExperts() {
               </div>
             </div>
 
-            <figure className="overflow-hidden rounded-2xl border border-border bg-background shadow-elegant">
+            <figure className="overflow-hidden rounded-md border border-border bg-background ">
               <div className="grid min-h-[175px] grid-cols-2 bg-surface">
                 <img
                   src="/images/writer-at-desk.jpg"
@@ -250,7 +250,7 @@ function ForExperts() {
                   </p>
                   <p className="text-base font-semibold">Systematic review, Nursing, MSc</p>
                 </div>
-                <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                <span className="rounded-md bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
                   Matched to you
                 </span>
               </div>
@@ -295,9 +295,9 @@ function ForExperts() {
           {benefits.map((b) => (
             <div
               key={b.title}
-              className="rounded-2xl border border-border bg-background p-7 transition-shadow hover:shadow-elegant"
+              className="rounded-md border border-border bg-background p-7 transition-colors "
             >
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <span className="flex h-12 w-12 items-center justify-center rounded-md bg-primary/10 text-primary">
                 <b.icon className="h-6 w-6" />
               </span>
               <h3 className="mt-5 text-lg font-semibold">{b.title}</h3>
@@ -323,9 +323,9 @@ function ForExperts() {
         />
         <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
-            <div key={s.title} className="rounded-2xl border border-border bg-background p-6">
+            <div key={s.title} className="rounded-md border border-border bg-background p-6">
               <div className="flex items-center justify-between">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <span className="flex h-11 w-11 items-center justify-center rounded-md bg-primary/10 text-primary">
                   <s.icon className="h-5 w-5" />
                 </span>
                 <span className="text-2xl font-bold text-primary/20">
@@ -352,7 +352,7 @@ function ForExperts() {
             {expectations.map((e) => (
               <li
                 key={e}
-                className="flex items-start gap-3 rounded-xl border border-border bg-background p-5"
+                className="flex items-start gap-3 rounded-md border border-border bg-background p-5"
               >
                 <BadgeCheck className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                 <p className="text-sm text-muted-foreground">{e}</p>

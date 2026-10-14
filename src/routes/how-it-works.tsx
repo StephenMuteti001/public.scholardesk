@@ -160,8 +160,8 @@ function HowItWorks() {
         />
         <div className="mt-14 grid gap-6 lg:grid-cols-3">
           {guarantees.map((g) => (
-            <div key={g.title} className="rounded-2xl border border-border bg-background p-7">
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+            <div key={g.title} className="rounded-md border border-border bg-background p-7">
+              <span className="flex h-12 w-12 items-center justify-center rounded-md bg-primary/10 text-primary">
                 <g.icon className="h-6 w-6" />
               </span>
               <h3 className="mt-5 text-lg font-semibold">{g.title}</h3>
@@ -175,7 +175,7 @@ function HowItWorks() {
         <SectionHeading
           title="What each side sees at every stage"
         />
-        <div className="mt-12 overflow-x-auto rounded-2xl border border-border">
+        <div className="mt-12 overflow-x-auto rounded-md border border-border">
           <table className="w-full min-w-[640px] border-collapse text-left text-sm">
             <thead className="bg-surface-strong">
               <tr>

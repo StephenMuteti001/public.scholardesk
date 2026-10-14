@@ -115,7 +115,7 @@ export function AudiencePage({
               </div>
             </div>
 
-            <figure className="overflow-hidden rounded-2xl border border-border bg-background shadow-elegant">
+            <figure className="overflow-hidden rounded-md border border-border bg-background ">
               <div className="aspect-[16/8] overflow-hidden">
                 <img
                   src={heroImage}
@@ -138,7 +138,7 @@ export function AudiencePage({
                     </div>
                   ))}
                 </div>
-                <div className="mt-5 flex items-center gap-2 rounded-xl bg-surface p-4 text-sm">
+                <div className="mt-5 flex items-center gap-2 rounded-md bg-surface p-4 text-sm">
                   <Star className="h-4 w-4 shrink-0 text-primary" />
                   {controlNote}
                 </div>
@@ -152,8 +152,8 @@ export function AudiencePage({
         <SectionHeading title={servicesTitle} description={servicesDescription} />
         <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {services.map((item) => (
-            <div key={item.title} className="rounded-2xl border border-border bg-background p-7">
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+            <div key={item.title} className="rounded-md border border-border bg-background p-7">
+              <span className="flex h-12 w-12 items-center justify-center rounded-md bg-primary/10 text-primary">
                 <item.icon className="h-6 w-6" />
               </span>
               <h2 className="mt-5 text-lg font-semibold">{item.title}</h2>
@@ -177,8 +177,8 @@ export function AudiencePage({
         <SectionHeading title={benefitsTitle} description={benefitsDescription} />
         <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {benefits.map((item) => (
-            <div key={item.title} className="rounded-2xl border border-border bg-background p-7 transition-shadow hover:shadow-elegant">
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+            <div key={item.title} className="rounded-md border border-border bg-background p-7 transition-colors ">
+              <span className="flex h-12 w-12 items-center justify-center rounded-md bg-primary/10 text-primary">
                 <item.icon className="h-6 w-6" />
               </span>
               <h2 className="mt-5 text-lg font-semibold">{item.title}</h2>
@@ -198,7 +198,7 @@ export function AudiencePage({
       <Section tone="soft">
         <SectionHeading title={assessmentTitle} description={assessmentDescription} />
         <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-2">
-          <div className="rounded-2xl border border-border bg-background p-7 shadow-soft">
+          <div className="rounded-md border border-border bg-background p-7 ">
             <p className="text-xs font-semibold uppercase text-primary">Work with a specialist</p>
             <h2 className="mt-3 text-xl font-semibold">Book a ScholarDesk expert</h2>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
@@ -208,9 +208,9 @@ export function AudiencePage({
               <a href={registerUrl("client")}>{expertCtaLabel}</a>
             </Button>
           </div>
-          <div className="relative overflow-hidden rounded-2xl border border-primary/30 bg-background p-7 shadow-elegant">
-            <span className="absolute right-5 top-5 rounded-full bg-primary px-2.5 py-1 text-xs font-semibold text-primary-foreground">New</span>
-            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+          <div className="relative overflow-hidden rounded-md border border-primary/30 bg-background p-7 ">
+            <span className="absolute right-5 top-5 rounded-md bg-primary px-2.5 py-1 text-xs font-semibold text-primary-foreground">New</span>
+            <span className="flex h-12 w-12 items-center justify-center rounded-md bg-primary/10 text-primary">
               <ScanSearch className="h-6 w-6" />
             </span>
             <p className="mt-5 text-xs font-semibold uppercase text-primary">AssessDesk by ScholarDesk</p>
@@ -227,9 +227,9 @@ export function AudiencePage({
         <SectionHeading title={stepsTitle} />
         <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, index) => (
-            <div key={step.title} className="rounded-2xl border border-border bg-background p-6">
+            <div key={step.title} className="rounded-md border border-border bg-background p-6">
               <div className="flex items-center justify-between">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <span className="flex h-11 w-11 items-center justify-center rounded-md bg-primary/10 text-primary">
                   <step.icon className="h-5 w-5" />
                 </span>
                 <span className="text-2xl font-bold text-primary/20">{String(index + 1).padStart(2, "0")}</span>

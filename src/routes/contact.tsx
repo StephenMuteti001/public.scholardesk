@@ -94,7 +94,7 @@ function Contact() {
       <Section>
         <div className="grid gap-10 lg:grid-cols-3">
           <div className="lg:col-span-2">
-            <div className="rounded-2xl border border-border bg-background p-7 shadow-soft">
+            <div className="rounded-md border border-border bg-background p-7 ">
               <h2 className="text-xl font-semibold">Send us a message</h2>
               <p className="mt-1 text-sm text-muted-foreground">
                 Fill in the form and our team will get back to you within 24 hours.
@@ -138,7 +138,7 @@ function Contact() {
           </div>
 
           <div className="space-y-6">
-            <div className="rounded-2xl border border-border bg-surface p-7">
+            <div className="rounded-md border border-border bg-surface p-7">
               <ul className="space-y-6">
                 <li className="flex items-start gap-4">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
@@ -181,7 +181,7 @@ function Contact() {
               </ul>
             </div>
 
-            <div className="rounded-2xl border border-primary/20 bg-soft p-7">
+            <div className="rounded-md border border-primary/20 bg-soft p-7">
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4 text-primary" />
                 <h2 className="font-semibold">Response times</h2>

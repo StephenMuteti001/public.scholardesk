@@ -61,7 +61,7 @@ export function SiteHeader() {
     <header
       className={`sticky top-0 z-50 transition-[background-color,border-color] duration-300 ${
         inverse
-          ? "border-b border-primary-foreground/10 bg-primary-deep/65 text-primary-foreground"
+          ? "border-b border-primary-foreground/10 bg-primary-deep text-primary-foreground"
           : "border-b border-border bg-background text-foreground"
       }`}
     >
@@ -99,7 +99,7 @@ export function SiteHeader() {
             </button>
             {customersOpen && (
               <div className="absolute left-1/2 top-full w-72 -translate-x-1/2 pt-2">
-                <div className="overflow-hidden rounded-xl border border-border bg-popover shadow-lg">
+                <div className="overflow-hidden rounded-md border border-border bg-popover">
                   {customers.map((item) => (
                     <Link
                       key={item.href}
@@ -129,14 +129,14 @@ export function SiteHeader() {
           ))}
           <a
             href={PORTALS.ASSESSDESK}
-            className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-semibold transition-colors ${
+            className={`inline-flex items-center gap-2 rounded-md border px-3 py-1.5 text-sm font-semibold transition-colors ${
               inverse
                 ? "border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/15"
                 : "border-primary/25 bg-primary/5 text-primary hover:bg-primary/10"
             }`}
           >
             AssessDesk
-            <span className="rounded-full bg-primary px-1.5 py-0.5 text-[10px] font-bold uppercase text-primary-foreground">New</span>
+            <span className="rounded-sm bg-primary px-1.5 py-0.5 text-[10px] font-bold uppercase text-primary-foreground">New</span>
           </a>
         </nav>
 
@@ -238,7 +238,7 @@ export function SiteHeader() {
               className="flex items-center justify-between rounded-md border border-primary/20 bg-primary/5 px-3 py-2 text-base font-semibold text-primary hover:bg-primary/10"
             >
               AssessDesk
-              <span className="rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold uppercase text-primary-foreground">New</span>
+              <span className="rounded-sm bg-primary px-2 py-0.5 text-[10px] font-bold uppercase text-primary-foreground">New</span>
             </a>
             <div className="grid gap-2 pt-3">
               <Button variant="outline" asChild>

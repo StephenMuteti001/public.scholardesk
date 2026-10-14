@@ -219,12 +219,12 @@ function Home() {
                  ScholarDesk gives students and professionals one managed place for academic support, professional documents, research, exam materials, interviews, assessments, tests, and exams. Every task is matched to a vetted expert, tracked clearly and reviewed before payment is released.
               </p>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <Button size="lg" asChild className="bg-primary shadow-strong ring-1 ring-primary-foreground/25 hover:bg-primary/90">
+                <Button size="lg" asChild className="bg-primary hover:bg-primary/90">
                   <a href={registerUrl("client")}>
                     Get expert support <ArrowRight className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
-                <Button size="lg" variant="outline" asChild className="border-primary-foreground/70 bg-transparent text-primary-foreground shadow-none hover:bg-primary-foreground/10 hover:text-primary-foreground">
+                <Button size="lg" variant="outline" asChild className="border-primary-foreground/70 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
                   <a href={registerUrl("writer")}>Join as an expert</a>
                 </Button>
               </div>
@@ -236,8 +236,8 @@ function Home() {
                 <p className="mt-3 text-2xl font-semibold">Matched, tracked & accountable</p>
                 <div className="mt-6 space-y-4 text-sm text-primary-foreground/80">
                   {["Submit your task", "Get a vetted expert", "Review before payment"].map((label, index) => (
-                    <div key={label} className="home-lesson-line flex items-center gap-3" style={{ animationDelay: `${index * 1.2}s` }}>
-                      <span className="flex h-7 w-7 items-center justify-center rounded-full border border-primary-foreground/35 text-xs font-semibold">{index + 1}</span>
+                    <div key={label} className="home-lesson-line flex items-center gap-3">
+                      <span className="flex h-7 w-7 items-center justify-center rounded-md border border-primary-foreground/35 text-xs font-semibold">{index + 1}</span>
                       <span>{label}</span>
                     </div>
                   ))}
@@ -293,9 +293,9 @@ function Home() {
           {pillars.map((p) => (
             <div
               key={p.title}
-              className="rounded-2xl border border-border bg-background p-6 transition-shadow hover:shadow-elegant"
+              className="rounded-md border border-border bg-background p-6 transition-colors "
             >
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <span className="flex h-12 w-12 items-center justify-center rounded-md bg-primary/10 text-primary">
                 <p.icon className="h-6 w-6" />
               </span>
               <h3 className="mt-5 text-lg font-semibold">{p.title}</h3>
@@ -317,9 +317,9 @@ function Home() {
               key={area.slug}
               to="/services"
               hash={area.slug}
-              className="group flex h-full flex-col rounded-2xl border border-border bg-background p-7 transition-shadow hover:shadow-elegant"
+              className="group flex h-full flex-col rounded-md border border-border bg-background p-7 transition-colors "
             >
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <span className="flex h-12 w-12 items-center justify-center rounded-md bg-primary/10 text-primary">
                 <area.icon className="h-6 w-6" />
               </span>
               <h3 className="mt-5 text-lg font-semibold">{area.name}</h3>
@@ -333,7 +333,7 @@ function Home() {
               </span>
             </Link>
           ))}
-          <div className="flex h-full flex-col justify-center rounded-2xl border border-dashed border-primary/30 bg-primary/5 p-7">
+          <div className="flex h-full flex-col justify-center rounded-md border border-dashed border-primary/30 bg-primary/5 p-7">
             <h3 className="text-lg font-semibold">Something else?</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               Matching is done by a person reading your brief. Send the task over and we will tell
@@ -348,7 +348,7 @@ function Home() {
 
       <Section tone="soft">
         <div className="grid items-center gap-8 lg:grid-cols-[auto_1fr_auto]">
-          <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
+          <span className="flex h-14 w-14 items-center justify-center rounded-md bg-primary/10 text-primary">
             <ScanSearch className="h-7 w-7" />
           </span>
           <div>
@@ -394,9 +394,9 @@ function Home() {
           {audiences.map((a) => (
             <div
               key={a.label}
-              className="flex flex-col rounded-2xl border border-border bg-background p-8 shadow-soft"
+              className="flex flex-col rounded-md border border-border bg-background p-8 "
             >
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <span className="flex h-12 w-12 items-center justify-center rounded-md bg-primary/10 text-primary">
                 <a.icon className="h-6 w-6" />
               </span>
               <p className="mt-5 text-xs font-semibold uppercase tracking-widest text-primary">
@@ -433,13 +433,13 @@ function Home() {
             {trust.map((t) => (
               <div
                 key={t.label}
-                className="flex items-start gap-3 rounded-xl border border-border bg-background p-5"
+                className="flex items-start gap-3 rounded-md border border-border bg-background p-5"
               >
                 <t.icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                 <p className="text-sm font-medium">{t.label}</p>
               </div>
             ))}
-            <div className="flex items-start gap-3 rounded-xl border border-border bg-background p-5 sm:col-span-2">
+            <div className="flex items-start gap-3 rounded-md border border-border bg-background p-5 sm:col-span-2">
               <LineChart className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
               <p className="text-sm text-muted-foreground">
                 Every completed order updates an expert's public performance record: quality,

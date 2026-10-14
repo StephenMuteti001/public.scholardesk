@@ -80,10 +80,10 @@ export function ExpertOnboardingFlow() {
         {expertSteps.map((step) => (
           <li
             key={step.n}
-            className="relative flex h-full flex-col rounded-2xl border border-border bg-background p-6 shadow-soft"
+            className="relative flex h-full flex-col rounded-md border border-border bg-background p-6 "
           >
             <div className="flex items-center justify-between">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <span className="flex h-11 w-11 items-center justify-center rounded-md bg-primary/10 text-primary">
                 <step.icon className="h-5 w-5" />
               </span>
               <span className="text-2xl font-bold text-primary/20">{step.n}</span>
@@ -108,7 +108,7 @@ export function ExpertOnboardingFlow() {
       </ol>
 
       {/* Decision fork at review */}
-      <div className="rounded-2xl border border-border bg-surface p-6 lg:p-8">
+      <div className="rounded-md border border-border bg-surface p-6 lg:p-8">
         <div className="text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             Decision point: after step 02
@@ -123,9 +123,9 @@ export function ExpertOnboardingFlow() {
         </div>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
-          <div className="rounded-xl border border-success/30 bg-background p-6">
+          <div className="rounded-md border border-success/30 bg-background p-6">
             <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-success/10 text-success">
+              <span className="flex h-10 w-10 items-center justify-center rounded-md bg-success/10 text-success">
                 <BadgeCheck className="h-5 w-5" />
               </span>
               <div>
@@ -148,9 +148,9 @@ export function ExpertOnboardingFlow() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-warning/40 bg-background p-6">
+          <div className="rounded-md border border-warning/40 bg-background p-6">
             <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-warning/15 text-warning-foreground">
+              <span className="flex h-10 w-10 items-center justify-center rounded-md bg-warning/15 text-warning-foreground">
                 <XCircle className="h-5 w-5" />
               </span>
               <div>
@@ -259,10 +259,10 @@ export function CustomerOnboardingFlow({ audience = "students" }: { audience?: "
       {customerSteps.map((step) => (
         <li
           key={step.n}
-          className="flex h-full flex-col rounded-2xl border border-border bg-background p-6 shadow-soft"
+          className="flex h-full flex-col rounded-md border border-border bg-background p-6 "
         >
           <div className="flex items-center justify-between">
-            <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+            <span className="flex h-11 w-11 items-center justify-center rounded-md bg-primary/10 text-primary">
               <step.icon className="h-5 w-5" />
             </span>
             <span className="text-2xl font-bold text-primary/20">{step.n}</span>

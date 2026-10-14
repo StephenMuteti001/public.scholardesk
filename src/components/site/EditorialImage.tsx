@@ -18,7 +18,7 @@ export function EditorialImage({
   eager = false,
 }: EditorialImageProps) {
   return (
-    <figure className={`group overflow-hidden rounded-2xl bg-surface shadow-elegant ${className}`}>
+    <figure className={`group overflow-hidden rounded-md border border-border bg-surface ${className}`}>
       <div className="relative aspect-[16/10] overflow-hidden">
         <img
           src={src}
@@ -28,11 +28,10 @@ export function EditorialImage({
           loading={eager ? "eager" : "lazy"}
           fetchPriority={eager ? "high" : "auto"}
           decoding="async"
-          className={`h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025] motion-reduce:transition-none ${imageClassName}`}
+          className={`h-full w-full object-cover  ${imageClassName}`}
         />
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-primary-deep/85 to-transparent" aria-hidden="true" />
         {eyebrow || caption ? (
-          <figcaption className="absolute inset-x-0 bottom-0 p-5 text-primary-foreground sm:p-6">
+          <figcaption className="bg-primary-deep p-5 text-primary-foreground sm:p-6">
             {eyebrow ? (
               <p className="text-xs font-semibold uppercase tracking-widest opacity-80">{eyebrow}</p>
             ) : null}

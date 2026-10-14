@@ -175,15 +175,15 @@ function Column({
   const isBefore = variant === "before";
   return (
     <div
-      className={`rounded-2xl border p-6 lg:p-8 ${
+      className={`rounded-md border p-6 lg:p-8 ${
         isBefore
           ? "border-border bg-surface-strong"
-          : "border-primary/25 bg-background shadow-elegant"
+          : "border-primary/25 bg-background "
       }`}
     >
       <div className="flex items-center gap-3">
         <span
-          className={`flex h-10 w-10 items-center justify-center rounded-full ${
+          className={`flex h-10 w-10 items-center justify-center rounded-md ${
             isBefore ? "bg-destructive/10 text-destructive" : "bg-success/10 text-success"
           }`}
         >
@@ -238,7 +238,7 @@ export function BeforeAfter({ audience }: { audience: "clients" | "students" | "
     <div className="relative grid items-start gap-6 lg:grid-cols-[1fr_auto_1fr]">
       <Column variant="before" rows={rows} />
       <div className="flex items-center justify-center lg:h-full">
-        <span className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background text-primary shadow-soft">
+        <span className="flex h-12 w-12 items-center justify-center rounded-md border border-border bg-background text-primary ">
           <ArrowRight className="h-5 w-5 lg:rotate-0 rotate-90" />
         </span>
       </div>

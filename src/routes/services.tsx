@@ -151,14 +151,14 @@ function Services() {
       {/* Area index: jump links */}
       <nav
         aria-label="Areas of focus"
-        className="border-y border-border bg-background/85 backdrop-blur"
+        className="border-y border-border bg-background "
       >
         <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-4 py-4 sm:px-6 lg:justify-center lg:px-8">
           {SERVICE_AREAS.map((area) => (
             <a
               key={area.slug}
               href={`#${area.slug}`}
-              className="flex shrink-0 items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/30 hover:bg-primary/5 hover:text-primary"
+              className="flex shrink-0 items-center gap-2 rounded-md border border-border bg-background px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/30 hover:bg-primary/5 hover:text-primary"
             >
               <area.icon className="h-4 w-4" />
               {area.name}
@@ -178,12 +178,12 @@ function Services() {
             <article
               key={area.slug}
               id={area.slug}
-              className="scroll-mt-28 overflow-hidden rounded-3xl border border-border bg-background shadow-soft transition-shadow hover:shadow-elegant"
+              className="scroll-mt-28 overflow-hidden rounded-md border border-border bg-background  transition-colors "
             >
               <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
                 <div className="border-b border-border bg-surface p-8 lg:border-b-0 lg:border-r lg:p-10">
                   <div className="flex items-center gap-4">
-                    <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                    <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
                       <area.icon className="h-7 w-7" />
                     </span>
                     <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
@@ -222,7 +222,7 @@ function Services() {
                       {area.standards.map((s) => (
                         <span
                           key={s}
-                          className="rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 text-xs font-medium text-primary"
+                          className="rounded-md border border-primary/20 bg-primary/5 px-3 py-1.5 text-xs font-medium text-primary"
                         >
                           {s}
                         </span>
@@ -246,7 +246,7 @@ function Services() {
           {DISCIPLINES.map((d) => (
             <span
               key={d}
-              className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-muted-foreground"
+              className="rounded-md border border-border bg-background px-4 py-2 text-sm font-medium text-muted-foreground"
             >
               {d}
             </span>
@@ -276,7 +276,7 @@ function Services() {
               body: "Funds are released only when you mark the order complete.",
             },
           ].map((item) => (
-            <div key={item.title} className="rounded-2xl border border-border bg-surface p-6">
+            <div key={item.title} className="rounded-md border border-border bg-surface p-6">
               <h3 className="text-base font-semibold">{item.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
             </div>
@@ -289,7 +289,7 @@ function Services() {
         <SectionHeading
           title="What customers ask before they place a first order"
         />
-        <div className="mx-auto mt-12 max-w-3xl divide-y divide-border overflow-hidden rounded-2xl border border-border bg-background">
+        <div className="mx-auto mt-12 max-w-3xl divide-y divide-border overflow-hidden rounded-md border border-border bg-background">
           {faqs.map((f) => (
             <details key={f.q} className="group p-6">
               <summary className="flex cursor-pointer items-start justify-between gap-4 text-base font-semibold marker:content-none">
