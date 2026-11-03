@@ -1,8 +1,8 @@
 export const PORTALS = {
   PUBLIC: "https://scholardesk.pro",
   AUTH: "https://auth.scholardesk.pro",
-  WRITER: "https://writer.scholardesk.pro",
-  CLIENT: "https://client.scholardesk.pro",
+  EXPERT: "https://expert.scholardesk.pro",
+  CUSTOMER: "https://portal.scholardesk.pro",
   ADMIN: "https://admin.scholardesk.pro",
   ASSESSDESK: "https://assessdesk.scholardesk.pro",
 } as const;
@@ -19,3 +19,7 @@ export const registerUrl = (role?: "client" | "writer") =>
   role ? `${PORTALS.AUTH}/register?role=${role}` : `${PORTALS.AUTH}/register`;
 
 export const loginUrl = () => PORTALS.AUTH;
+
+/** ScholarDesk API base (override with VITE_API_URL). */
+export const API_URL: string =
+  (import.meta.env["VITE_API_URL"] as string | undefined) ?? "https://api.scholardesk.pro/api/v1";

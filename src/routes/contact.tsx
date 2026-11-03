@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Section } from "@/components/site/Primitives";
-import { SITE } from "@/config/site";
+import { API_URL, SITE } from "@/config/site";
 import { EditorialImage } from "@/components/site/EditorialImage";
 
 const title = "Contact ScholarDesk | Talk to Our Support Team";
@@ -23,14 +23,14 @@ export const Route = createFileRoute("/contact")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/contact" },
+      { property: "og:url", content: `${SITE.domain}/contact` },
       { property: "og:image", content: SITE.ogImage },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: description },
       { name: "twitter:image", content: SITE.ogImage },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: `${SITE.domain}/contact` }],
     scripts: [
       {
         type: "application/ld+json",
@@ -39,7 +39,7 @@ export const Route = createFileRoute("/contact")({
           "@type": "ContactPage",
           name: title,
           description,
-          url: "/contact",
+          url: `${SITE.domain}/contact`,
         }),
       },
     ],
@@ -49,19 +49,44 @@ export const Route = createFileRoute("/contact")({
 
 function Contact() {
   const [sending, setSending] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [sentRef, setSentRef] = useState<string | null>(null);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSending(true);
     const form = e.currentTarget;
-    setTimeout(() => {
-      setSending(false);
-      form.reset();
-      toast.success("Message sent", {
-        description: "Our team typically replies within a few hours.",
+    const values = Object.fromEntries(new FormData(form).entries());
+    setSending(true);
+    setErrors({});
+    try {
+      const response = await fetch(`${API_URL}/public/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...values, source_page: "/contact" }),
       });
-    }, 700);
+      const body = (await response.json().catch(() => ({}))) as {
+        message?: string;
+        data?: { reference?: string | null };
+        error?: { message?: string; details?: Record<string, string> };
+      };
+      if (!response.ok) {
+        if (body.error?.details) setErrors(body.error.details);
+        toast.error("Message not sent", { description: body.error?.message ?? "Please try again in a moment." });
+        return;
+      }
+      form.reset();
+      setSentRef(body.data?.reference ?? null);
+      toast.success("Message sent", { description: body.message ?? "We'll reply by email within 24 hours." });
+    } catch {
+      toast.error("Message not sent", {
+        description: `We couldn't reach our server. Please try again, or email ${SITE.email}.`,
+      });
+    } finally {
+      setSending(false);
+    }
   };
+  const fieldError = (name: string) =>
+    errors[name] ? <p id={`${name}-error`} className="text-sm text-destructive">{errors[name]}</p> : null;
 
   return (
     <>
@@ -103,7 +128,8 @@ function Contact() {
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div className="space-y-2">
                     <Label htmlFor="name">Name</Label>
-                    <Input id="name" name="name" placeholder="Your full name" required />
+                    <Input id="name" name="name" placeholder="Your full name" required aria-invalid={!!errors["name"]} aria-describedby={errors["name"] ? "name-error" : undefined} />
+                    {fieldError("name")}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
@@ -112,13 +138,15 @@ function Contact() {
                       name="email"
                       type="email"
                       placeholder="you@example.com"
-                      required
+                      required aria-invalid={!!errors["email"]} aria-describedby={errors["email"] ? "email-error" : undefined}
                     />
+                    {fieldError("email")}
                   </div>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="subject">Subject</Label>
-                  <Input id="subject" name="subject" placeholder="How can we help?" required />
+                  <Input id="subject" name="subject" placeholder="How can we help?" required aria-invalid={!!errors["subject"]} aria-describedby={errors["subject"] ? "subject-error" : undefined} />
+                    {fieldError("subject")}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="message">Message</Label>
@@ -127,9 +155,28 @@ function Contact() {
                     name="message"
                     rows={6}
                     placeholder="Tell us about your task, or the work you would like to do with us."
-                    required
+                    required aria-invalid={!!errors["message"]} aria-describedby={errors["message"] ? "message-error" : undefined}
                   />
+                    {fieldError("message")}
                 </div>
+                <div className="space-y-2">
+                  <Label htmlFor="topic">Topic</Label>
+                  <select id="topic" name="topic" defaultValue="general" className="flex h-10 w-full rounded-md border border-input bg-background px-3 text-sm">
+                    <option value="general">General question</option>
+                    <option value="order">An existing order</option>
+                    <option value="pricing">Pricing &amp; quotes</option>
+                    <option value="expert_application">Becoming an expert</option>
+                    <option value="partnership">Partnerships</option>
+                    <option value="other">Something else</option>
+                  </select>
+                </div>
+                {/* Honeypot for bots: hidden from people and screen readers. */}
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
+                {sentRef && (
+                  <p role="status" className="rounded-md border border-primary/20 bg-soft px-4 py-3 text-sm">
+                    Thanks — your message is with our team (reference <strong>{sentRef}</strong>). A confirmation is on its way to your inbox.
+                  </p>
+                )}
                 <Button type="submit" size="lg" disabled={sending}>
                   {sending ? "Sending…" : "Send message"}
                 </Button>

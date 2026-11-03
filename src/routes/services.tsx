@@ -48,14 +48,14 @@ export const Route = createFileRoute("/services")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/services" },
+      { property: "og:url", content: `${SITE.domain}/services` },
       { property: "og:image", content: SITE.ogImage },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: description },
       { name: "twitter:image", content: SITE.ogImage },
     ],
-    links: [{ rel: "canonical", href: "/services" }],
+    links: [{ rel: "canonical", href: `${SITE.domain}/services` }],
     scripts: [
       {
         type: "application/ld+json",
